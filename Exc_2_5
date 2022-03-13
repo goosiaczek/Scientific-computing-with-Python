@@ -1,0 +1,32 @@
+
+# EXERCISE 2.5 (LIST)
+
+S = """fb fb  fgbcghmg ht
+    sdgddfbgbnsfdb ffmghm
+    fgnghn rjtyj tyj rjj
+    tjtyj puyol regeg rtr
+    sdfbf nfdjgkfkdfjgkfd"""
+
+# number of black characters in S
+count = 0
+for a in S:
+    if a.isalnum():
+        count += 1
+print(count)
+
+# number of words in S
+l = S.split()
+print(l)
+words = len(l)
+print(words)
+
+# the longest word in S
+longest_word = max(l, key=len)
+print(longest_word)
+
+# sorted by the lexicographic order and the length
+lexicographic_order = sorted(l)
+length_order = sorted(l, key=len)
+
+print(lexicographic_order)
+print(length_order)
