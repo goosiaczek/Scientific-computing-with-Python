@@ -1,0 +1,31 @@
+
+# EXERCISE 2.4 (STR)
+
+# a
+name = "Małgorzata"
+result = []
+for letter in name:
+    result.append(ord(letter))
+
+print(result)
+
+
+# b
+pt = [(1, "Wodór", "H", 1), (2, "Hel", "He", 2),
+      (3, "Lit", "Li", 7), (4, "Beryl", "Be", 9),
+      (5, "Bor", "B", 11), (6, "Węgiel", "C", 12),
+      (7, "Azot", "N", 14), (8, "Tlen", "O", 16),
+      (9, "Fluor", "F", 19), (10, "Neon", "Ne", 10)]
+
+linia = "+---+--------------------+------+----------+"
+print(linia)
+print("|No.|Name (pl)           |Symbol|Weight (u)|")
+print(linia)
+for element in pt:
+    no = element[0]
+    name_ = element[1]
+    symbol_ = element[2]
+    weight = element[3]
+    verse = "|{0:>3}|{1:<20}|{2:^6}|{3:>10}|".format(no, name_, symbol_, weight)
+    print(verse)
+print(linia)
