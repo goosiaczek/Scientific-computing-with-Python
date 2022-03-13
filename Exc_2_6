@@ -1,0 +1,13 @@
+
+# EXERCISE 2.6 (TUPLE)
+
+t = (2, 4)
+
+print(t[2])
+# odwołanie do trzeciego elementu krotki
+
+t.append(6)
+# nie można zmienić zawartości krotki
+
+a, b = t ; print(a, b)
+# rozpakowuje krotkę i przypisuje 2 i 4 do zmiennych a i b
