@@ -1,0 +1,12 @@
+
+name = input("Enter your name: ")
+n = len(name)
+print("+", end="")
+for x in range(n):
+    print("---", end="+")
+print(f"\n|", end="")
+for letter in name:
+    print("{:^3}|".format(letter), end="")
+print(f"\n+", end="")
+for x in range(n):
+    print("---", end="+")
