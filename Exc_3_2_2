@@ -1,0 +1,16 @@
+
+# Rozwiązanie z pętlą while
+
+x = 40
+while x > 0:
+    if x == 13:
+        x = x-1
+    if (x % 5) == 0 and x % 7 == 0:
+        print(f"x is divided by 5 and 7, {x}")
+    if (x % 5) == 0:
+        print(f"x is divided by 5, {x}")
+    if (x % 7) == 0:
+        print(f"x is divided by 7, {x}")
+    else:
+        print(f"x is not important, {x}")
+    x = x-1
