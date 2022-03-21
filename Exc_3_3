@@ -1,0 +1,20 @@
+
+import math
+
+x = math.pi
+x = round(x, 5)
+# from decimal import *
+# getcontext().prec = 5
+# Decimal(x)
+n = 2022
+word = "Python"
+polish = "książka"
+
+outfile = open("vars.txt", 'w')
+outfile.write(f"{x}\n{n}\n{word}\n{polish}")
+outfile.close()
+
+outfile = open("vars.txt", 'r')
+for line in outfile:
+    print(line)
+outfile.close()
