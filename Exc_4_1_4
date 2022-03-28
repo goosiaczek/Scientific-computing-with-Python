@@ -1,0 +1,7 @@
+
+# (d) a sorting key (the sum |x|+|y|)
+
+point_list = [(1,4), (0,5), (5,-5), (3,9), (7,4)]
+
+point_list.sort(key = lambda x: (abs(x[0])+abs(x[1])))
+print(point_list)
