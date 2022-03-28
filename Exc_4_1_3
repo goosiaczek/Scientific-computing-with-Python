@@ -1,0 +1,7 @@
+
+# (c) a sorting key (y decreasing, x increasing)
+
+point_list = [(1,4), (0,5), (5,-5), (3,9), (7,4)]
+
+point_list.sort(key=lambda x: (-x[1], x[0]))
+print(point_list)
