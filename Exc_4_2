@@ -2,7 +2,7 @@
 L = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
 # iterative version
-def reverse_range_1(L, left, right):
+def reverse_range_i(L, left, right):
     while left < right:
         temp = L[right]
         L[right] = L[left]
@@ -12,3 +12,13 @@ def reverse_range_1(L, left, right):
         right -= 1
 
     return L
+
+
+# recursive version
+def reverse_range_recursion(L, left, right):
+    if left >= right:
+        return L
+    temp = L[right]
+    L[right] = L[left]
+    L[left] = temp
+    return reverse_range_recursion(L, left + 1, right - 1)
