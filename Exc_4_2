@@ -12,5 +12,3 @@ def reverse_range_1(L, left, right):
         right -= 1
 
     return L
-
-print(reverse_range_1(L, 3, 6))
