@@ -1,0 +1,18 @@
+
+import datetime
+
+
+def print_working_days(date1, date2):
+    date1 = datetime.date.fromisoformat(date1)
+    date2 = datetime.date.fromisoformat(date2)
+    td = datetime.timedelta(days=1)
+
+    while date1 < date2:
+        current_date = datetime.date.isoweekday(date1)
+        if current_date <= 5:
+            print(date1)
+
+        date1 += td
+
+
+print_working_days('2022-03-17', '2022-03-30')
