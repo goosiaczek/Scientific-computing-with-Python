@@ -7,7 +7,7 @@ import random
 
 def random_walk(start, repeat_):
     k = 0
-    while k < repeat_ + 1:
+    while k < repeat_:
         i = random.choice([-1, 1])
         yield start + i
         start += i
