@@ -1,0 +1,16 @@
+
+import os
+
+
+def find_pdf_size(top):
+    num_of_bytes = 0
+    for root, dirs, files in os.walk(top):
+        for name in files:
+            path = os.path.join(root, name)
+            if name.lower().endswith(".pdf"):
+                num_of_bytes += os.path.getsize(path)
+
+    return num_of_bytes
+
+
+print(find_pdf_size("C:\\Users\\gosia\\Downloads")) # z podwójnymi "\"
