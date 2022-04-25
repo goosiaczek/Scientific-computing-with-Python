@@ -1,0 +1,25 @@
+
+""" EXERCISE 7.1
+Create a function find_axis(v1, v2) which returns the unit vector v3,
+where v3 is perpendicular to the vectors v1 and v2.
+If the vectors v1 and v2 are parallel (or zero) then the function should raise
+an exception (ValueError)."""
+
+from Exc_6 import Vector
+
+
+def find_axis(v1, v2):
+    try:
+        v3 = Vector.cross(v1, v2)
+        # print(v3)
+        if v1.is_zero() or v2.is_zero() or v3.is_zero():
+            raise ValueError
+    except ValueError:
+        return "Invalid data"
+    else:
+        return v3
+
+v1 = Vector(0, 0, 0)
+v2 = Vector(5, 5, 5)
+
+print(find_axis(v1, v2))
