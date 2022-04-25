@@ -1,0 +1,24 @@
+
+# EXERCISE 7.2
+# Create the following infinite iterators:
+
+# (a) returning 0, 1, 0, 1, 0, 1, ...,
+
+
+
+# (b) returning random sequence with 0 and 1,
+import random
+
+
+def zero_one(repeat_):
+    k = 0
+    while k < repeat_:
+        i = random.choice([0, 1])
+        yield i
+        k += 1
+
+
+for start in zero_one(10):
+    print(start)
+
+# (c) returning 0, 1, 0, -1, 0, 1, 0, -1, ...
