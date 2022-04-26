@@ -3,7 +3,16 @@
 # Create the following infinite iterators:
 
 # (a) returning 0, 1, 0, 1, 0, 1, ...,
+import itertools
 
+k = [0, 1]
+count = 0
+
+for i in itertools.cycle(k):
+    print(i)
+    count += 1
+    if count == 10:
+        break
 
 
 # (b) returning random sequence with 0 and 1,
