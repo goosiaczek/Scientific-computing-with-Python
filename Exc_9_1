@@ -8,6 +8,7 @@ import numpy as np
 
 x = np.arange(0, 11, 1)
 
+# osobne wykresy
 y = np.sin(x)
 plt.plot(x, y, 'r-')
 plt.title("sin(x)")
@@ -29,6 +30,19 @@ plt.show()
 y = np.exp(-x)
 plt.plot(x, y, 'b:')
 plt.title("exp(-x)")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.show()
+
+
+#jeden wykres
+y1 = np.sin(x)
+plt.plot(x, y1, 'r-', label='sin(x)')
+y2 = np.cos(x)
+plt.plot(x, y2, 'g--', label='cos(x)')
+y3 = np.exp(-x)
+plt.plot(x, y3, 'b:', label='exp(-x)')
 plt.xlabel("x")
 plt.ylabel("y")
 plt.legend()
