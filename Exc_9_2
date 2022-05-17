@@ -14,8 +14,13 @@ x = np.random.rand(n)
 y = np.random.rand(n)
 a = [x, y]
 b = [0, 0]
+colours = ['g' if cond else 'r' for cond in (math.dist(a, b)) < 1]
 colours = np.where(np.logical_and((math.dist(a, b)) < 1), 'g', 'r')
-area = (x + y)
+area = (x + y)*50
 
 plt.scatter(x, y, s=area, c=colours, alpha=1)
+plt.title("100 random points in a unit square")
+plt.xlabel("X")
+plt.ylabel("y")
+
 plt.show()
