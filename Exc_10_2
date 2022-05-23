@@ -1,0 +1,12 @@
+
+"""Create pd.Series where 'index' contains days of the current month and 'data'
+contains some numbers (temperatures at noon, currency rates, ...)"""
+
+import pandas as pd
+import numpy as np
+
+temp = pd.Series([17, 18, 19, 17, 19, 18, 17, 19,17, 18, 23, 23, 19, 19, 18, 20,
+                  19, 16, 22, 24, 19, 16, 16, 15, 17, 20, 22, 14, 17, 14, 18],
+                 name = 'Temperatura maksymalna')
+#temp.index =
+print(temp)
