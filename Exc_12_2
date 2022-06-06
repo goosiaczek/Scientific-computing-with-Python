@@ -1,0 +1,24 @@
+
+"""Create a random undirected graph G with more than 5 nodes.
+Send the script and the figure of the graph."""
+
+import networkx as nx
+import matplotlib.pyplot as plt
+from random import randint
+
+# with generator
+"""G = nx.complete_graph(6)
+nx.draw(G, with_labels=True, edge_color='red', width=2.0, style='dotted')
+plt.show()"""
+
+
+tab1 = [randint(1, 10) for _ in range(7)]
+tab2 = [(randint(1, 5), randint(6, 10)) for _ in range(7)]
+G = nx.Graph()
+for node in tab1:
+    G.add_node(node)
+for edge in tab2:
+    G.add_edge(edge[0], edge[1])
+
+nx.draw(G, with_labels=True, edge_color='red', width=2.0, style='dotted')
+plt.show()
