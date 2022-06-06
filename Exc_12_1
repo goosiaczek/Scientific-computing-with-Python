@@ -46,22 +46,22 @@ class Vector:
         return hash((self.x, self.y, self.z))
 
 
-# Exemplary 'pytest' tests:
+# Testy 'pytest' (bez tworzenia klasy):
 
-def test_equality():
+"""def test_not_equal():
     v = Vector(1, 2, 3)
     w = Vector(2, -3, 2)
     assert v != w
 
 
 # this test is failed:
-def test_sum():
+def test_addition():
     v = Vector(1, 2, 3)
     w = Vector(2, -3, 2)
     assert v + w == Vector(3, -1, 55)
 
 
-def test_difference():
+def test_substraction():
     v = Vector(1, 2, 3)
     w = Vector(2, -3, 2)
     assert v - w == Vector(-1, 5, 1)
@@ -73,7 +73,7 @@ def test_multiplication():
     assert v * w == 2
 
 
-def test_cross():
+def test_cross_product():
     v = Vector(1, 2, 3)
     w = Vector(2, -3, 2)
     assert v.cross(w) == Vector(13, 4, -7)
@@ -85,8 +85,51 @@ def test_length():
     assert v.length() == math.sqrt(14)
 
 
-def test_len():
+def test_sets():
     v = Vector(1, 2, 3)
     w = Vector(2, -3, 2)
     s = set([v, v, w])
     assert len(s) == 2
+
+if __name__ == "__main__":
+    pytest.main()"""
+
+
+class TestVectors:
+    """Klasa służąca do testowania operacji na wektorach"""
+
+    @pytest.fixture(scope="class")
+    def v(self):
+        return Vector(1, 2, 3)
+
+    @pytest.fixture(scope="class")
+    def w(self):
+        return Vector(2, -3, 2)
+
+    def test_not_equal(self, v, w):
+        assert v != w
+
+    def test_addition(self, v, w):
+        assert v + w == Vector(3, -1, 5)
+
+    def test_subtraction(self, v, w):
+        assert v - w == Vector(-1, 5, 1)
+
+    def test_multiplication(self, v, w):
+        assert v * w == 2
+
+    def test_cross_product(self, v, w):
+        assert v.cross(w) == Vector(13, 4, -7)
+
+    def test_length(self, v, w):
+        assert v.length() == math.sqrt(14)
+        assert w.length() == math.sqrt(17)
+
+    def test_sets(self, v, w):
+        S = {v, v, w}
+        assert len(S) == 2
+
+
+if __name__ == "__main__":
+    pytest.main()
+    
