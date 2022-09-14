@@ -59,6 +59,7 @@ def create_graph(currency_code=None, start_date=None, end_date=None):
         file_object.write(table.to_string())
 
     average = sum(rates)/len(rates)
+    print(f"Mean rate: {average} PLN.")
 
 
     # creating a chart
