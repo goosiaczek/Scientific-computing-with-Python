@@ -1,0 +1,99 @@
+
+#Currency graph generator
+
+import xml.etree.ElementTree as ET
+import requests
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from datetime import datetime
+
+
+# creating a function, handling errors
+def create_graph(currency_code=None, start_date=None, end_date=None):
+    if currency_code is None or start_date is None or end_date is None:
+        return "At least one function parameter is missing.\n" \
+               "Function requires 3 arguments: currency code, starting date, " \
+               "and ending date. "
+    try:
+        datetime.strptime(start_date, "%Y-%m-%d")
+        datetime.strptime(end_date, "%Y-%m-%d")
+    except ValueError:
+        return "Use proper date syntax: RRRR-MM-DD"
+    if start_date > end_date:
+        return "Start date has to be lower than the end date."
+    if currency_code.upper() == "PLN":
+        return "The exchange rate is expressed in PLN. Therefore, you cannot " \
+               "display the exchange rate of the zloty (PLN)."
+    if currency_code.upper() not in _download_codes():
+        return "We do not have data for this currency."
+
+
+    # generating the website address, page error codes handling
+    dates = []
+    rates = []
+    answer = requests.get(f"http://api.nbp.pl/api/exchangerates/rates/a/"
+                            f"{currency_code}/{start_date}/{end_date}/?format=xml")
+    if answer.status_code == 404:
+        return "Function requires 3 arguments: currency code, starting date, ending date.\n" \
+               "Use proper syntax: (xxx, RRRR-MM-DD, RRRR-MM-DD) and make sure " \
+               "the dates and currency code are entered correctly."
+    if answer.status_code == 400:
+        return "Limit of 367 days has been exceeded."
+
+    # creating a file, saving the website content to the file
+    filename = "exchange_rates.xml"
+    with open(filename, "wb") as f:
+        f.write(answer.content)
+
+    # analysis of the elements on the page and extracting data
+    tree = ET.parse(filename)
+    root = tree.getroot()
+    rates_root = root.find("Rates")
+    for element in rates_root.findall("Rate"):
+        dates.append(element.find("EffectiveDate").text)
+        rates.append(float(element.find("Mid").text))
+
+    table = pd.DataFrame({"Date": dates, "Rate": rates})
+    with open("table.txt", "w") as file_object:
+        file_object.write(table.to_string())
+
+    average = sum(rates)/len(rates)
+
+
+    # creating a chart
+    plt.plot(dates, rates, 'b-', label="rate")
+    plt.axhline(y=average, color='r', linestyle='--', label="mean rate")
+    plt.title(f"{currency_code.upper()} exchange rate over time")
+    plt.xlabel("Date")
+    plt.ylabel("Exchange [PLN]")
+    plt.xticks(np.linspace(0, len(dates) - 1, 6))
+    plt.legend()
+    plt.show()
+    return "Graph correctly generated."
+
+
+# creation of the auxiliary function (generating the website address, creating
+# a file, saving the website content to the file, extracting data)
+
+def _download_codes():
+    codes = []
+    URL = "https://api.nbp.pl/api/exchangerates/tables/A/?format=xml"
+    filename = "NBP_codes.xml"
+    answer = requests.get(URL)
+    with open(filename, 'wb') as f:
+        f.write(answer.content)
+
+    tree = ET.parse(filename)
+    root = tree.getroot()
+    rates_root = root.find("ExchangeRatesTable")
+    for element in rates_root.find("Rates").findall("Rate"):
+        codes.append(element.find("Code").text)
+    return codes
+
+
+"""Function requires 3 arguments: currency code, starting date, ending date.
+    Use proper syntax: (xxx, RRRR-MM-DD, RRRR-MM-DD)."""
+
+#example:
+print(create_graph("usd", "2022-05-01", "2022-08-01"))
