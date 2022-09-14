@@ -26,7 +26,12 @@ def create_graph(currency_code=None, start_date=None, end_date=None):
         return "The exchange rate is expressed in PLN. Therefore, you cannot " \
                "display the exchange rate of the zloty (PLN)."
     if currency_code.upper() not in _download_codes():
-        return "We do not have data for this currency."
+        return "We do not have data for this currency." \
+               "Check currency codes on the website: https://api.nbp.pl/api/exchangerates/tables/A/?format=xml"
+    if start_date > str(datetime.date(datetime.now())):
+        return "The date given is greater than today"
+    if end_date > str(datetime.date(datetime.now())):
+        return "The given date is greater than today."
 
 
     # generating the website address, page error codes handling
@@ -96,5 +101,4 @@ def _download_codes():
 """Function requires 3 arguments: currency code, starting date, ending date.
     Use proper syntax: (xxx, RRRR-MM-DD, RRRR-MM-DD)."""
 
-#example:
 print(create_graph("usd", "2022-05-01", "2022-08-01"))
